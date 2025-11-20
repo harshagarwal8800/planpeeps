@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlanPeeps – Travel · Discover · Belong</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="light">
+  <!-- Top Navigation -->
+  <header class="pp-header pp-header-glass">
+    <div class="pp-container pp-nav">
+      <div class="pp-logo">Plan<span>Peeps</span></div>
+      <nav class="pp-nav-links" id="mainNav">
+        <a href="#collection">Collection</a>
+        <a href="#experiences">Experiences</a>
+        <a href="#stories">Editorials</a>
+        <a href="#events">Events</a>
+        <a href="#membership">Membership</a>
+      </nav>
+      <div class="pp-nav-actions">
+        <button class="pp-icon-btn" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        <button class="pp-outline-btn" id="openSignin">Log in</button>
+        <button class="pp-primary-btn" id="openSignup">Join now</button>
+        <button class="pp-burger" id="burgerBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="pp-hero pp-hero-gradient" id="top">
+    <div class="pp-container pp-hero-grid">
+      <div class="pp-hero-text reveal">
+        <p class="pp-kicker">Travel · Discover · Belong</p>
+        <h1>PlanPeeps : where Travel meets Trend</h1>
+        <p>
+          Discover curated trips, unique stays and a trusted circle of travelers.
+          Get inspired, plan your journeys and connect with people who love the
+          world as much as you do.
+        </p>
+        <div class="pp-hero-cta">
+          <button class="pp-primary-btn" id="heroSignup">Create free account</button>
+          <button class="pp-ghost-btn" id="heroSignin">I already have an account</button>
+        </div>
+        <div class="pp-hero-meta">
+          <span>Verified community</span>
+          <span>Curated trips & stays</span>
+          <span>Events across the globe</span>
+        </div>
+      </div>
+
+      <div class="pp-hero-card float-card reveal visible">
+        <div class="pp-hero-card-header">
+          <h3>Planned trips</h3>
+          <span class="pp-dot"></span>
+        </div>
+
+        <!-- Trip carousel: shows 1 card at a time inside the hero card -->
+        <div class="pp-trip-carousel" tabindex="0" role="region" aria-label="Planned trips carousel">
+          <button class="pp-trip-btn prev" aria-label="Previous trip">‹</button>
+          <div class="pp-trip-viewport">
+            <div class="pp-trip-track">
+              <article class="pp-trip-card" data-index="0">
+                <img class="pp-trip-image" src="https://via.placeholder.com/600x360?text=Goa+Weekend" alt="Goa Long Weekend" loading="lazy" />
+                <div class="pp-trip-bio">
+                  <h4>Goa Long Weekend</h4>
+                  <p>Beachside co-living with 18 people joining. 3 seats left — music, food and coastal trails.</p>
+                  <div class="pp-trip-meta">Hosted by Aisha · 4 days · ₹12,000</div>
+                </div>
+              </article>
+
+              <article class="pp-trip-card" data-index="1">
+                <img class="pp-trip-image" src="https://via.placeholder.com/600x360?text=Manali+Workation" alt="Manali Workation" loading="lazy" />
+                <div class="pp-trip-bio">
+                  <h4>Manali Workation</h4>
+                  <p>Remote-friendly stays in the valleys — coworking, hikes and community dinners.</p>
+                  <div class="pp-trip-meta">Hosted by Rohit · 2 weeks · ₹22,000</div>
+                </div>
+              </article>
+
+              <article class="pp-trip-card" data-index="2">
+                <img class="pp-trip-image" src="https://via.placeholder.com/600x360?text=Bali+Co-living" alt="Bali Co-living" loading="lazy" />
+                <div class="pp-trip-bio">
+                  <h4>Bali Co-living</h4>
+                  <p>Four-week co-living by the sea — yoga, surf lessons and local host-led experiences.</p>
+                  <div class="pp-trip-meta">Hosted by Maria · 4 weeks · ₹55,000</div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <button class="pp-trip-btn next" aria-label="Next trip">›</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pp-container pp-seen-in reveal">
+      <span class="pp-seen-label">Imagined as featured by</span>
+      <div class="pp-seen-logos">
+        <span class="pp-logo-pill">Travel Journal</span>
+        <span class="pp-logo-pill">Globe & Co.</span>
+        <span class="pp-logo-pill">Nomad Weekly</span>
+        <span class="pp-logo-pill">City Escapes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three pillars: Travel / Discover / Belong -->
+  <section class="pp-section" id="collection">
+    <div class="pp-container pp-pillar-grid">
+      <article class="pp-pillar-card reveal">
+        <h2>Travel</h2>
+        <p>Browse hand-picked trips and hotels designed for social, curious travelers.</p>
+      </article>
+      <article class="pp-pillar-card reveal">
+        <h2>Discover</h2>
+        <p>Get a daily dose of destination ideas, hidden stays and curated city guides.</p>
+      </article>
+      <article class="pp-pillar-card reveal">
+        <h2>Belong</h2>
+        <p>Join a private circle of members who travel often and travel well.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Member benefits -->
+  <section class="pp-section pp-section-alt" id="membership">
+    <div class="pp-container">
+      <div class="pp-section-head">
+        <div>
+          <h2>Member benefits</h2>
+          <p>Why frequent travelers feel at home on PlanPeeps.</p>
+        </div>
+        <button class="pp-outline-btn small" id="membershipSignup">View membership options</button>
+      </div>
+
+      <div class="pp-benefit-grid">
+        <article class="pp-benefit-card reveal">
+          <h3>VIP hotel treatment</h3>
+          <p>Unlock upgrades, late check-outs and little extras at selected stays.</p>
+        </article>
+        <article class="pp-benefit-card reveal">
+          <h3>Global community</h3>
+          <p>Meet members from major cities across India and beyond.</p>
+        </article>
+        <article class="pp-benefit-card reveal">
+          <h3>Events & meetups</h3>
+          <p>Attend curated gatherings, dinners and experiences with the community.</p>
+        </article>
+        <article class="pp-benefit-card reveal">
+          <h3>Travel inspiration</h3>
+          <p>Daily stories and guides to spark ideas for your next journey.</p>
+        </article>
+        <article class="pp-benefit-card reveal">
+          <h3>Partner privileges</h3>
+          <p>Special savings and perks with travel brands we trust.</p>
+        </article>
+        <article class="pp-benefit-card reveal">
+          <h3>Limited hotel offers</h3>
+          <p>Occasional free nights and exclusive bundles at standout stays.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Member reviews / ratings -->
+  <section class="pp-section" id="stories">
+    <div class="pp-container">
+      <h2 class="pp-center">What members say</h2>
+      <p class="pp-center pp-subtitle">Real feedback from people who rated our app.</p>
+
+      <div class="pp-review-carousel">
+        <button class="pp-carousel-btn prev" aria-label="Previous reviews">‹</button>
+        <div class="pp-review-viewport">
+          <div class="pp-review-grid pp-review-track">
+        <article class="pp-review-card reveal">
+          <div class="pp-review-head">
+            <div class="pp-avatar">AK</div>
+            <div>
+              <h3 class="pp-review-name">Aisha K.</h3>
+              <div class="pp-rating" aria-label="4.5 out of 5 stars">★ ★ ★ ★ ☆</div>
+            </div>
+          </div>
+          <p class="pp-review-quote">"I found the perfect travel buddy for my Goa trip — the community is helpful and trustworthy."</p>
+          <span class="pp-review-meta">Verified member · Mumbai</span>
+        </article>
+
+        <article class="pp-review-card reveal">
+          <div class="pp-review-head">
+            <div class="pp-avatar">RS</div>
+            <div>
+              <h3 class="pp-review-name">Rohit S.</h3>
+              <div class="pp-rating" aria-label="5 out of 5 stars">★ ★ ★ ★ ★</div>
+            </div>
+          </div>
+          <p class="pp-review-quote">"Curated stays and great member events — I've met people I still travel with."</p>
+          <span class="pp-review-meta">Verified member · Delhi</span>
+        </article>
+
+        <article class="pp-review-card reveal">
+          <div class="pp-review-head">
+            <div class="pp-avatar">ML</div>
+            <div>
+              <h3 class="pp-review-name">Maria L.</h3>
+              <div class="pp-rating" aria-label="4 out of 5 stars">★ ★ ★ ★ ☆</div>
+            </div>
+          </div>
+          <p class="pp-review-quote">"The app helped me join a co-living group for Bali — memorable experience."</p>
+          <span class="pp-review-meta">Verified member · Bangalore</span>
+        </article>
+
+        <article class="pp-review-card reveal">
+          <div class="pp-review-head">
+            <div class="pp-avatar">DP</div>
+            <div>
+              <h3 class="pp-review-name">Daniel P.</h3>
+              <div class="pp-rating" aria-label="4 out of 5 stars">★ ★ ★ ★ ☆</div>
+            </div>
+          </div>
+          <p class="pp-review-quote">"Easy to discover like-minded travelers — the events are well run."</p>
+          <span class="pp-review-meta">Verified member · Pune</span>
+        </article>
+          </div>
+        </div>
+        <button class="pp-carousel-btn next" aria-label="Next reviews">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section class="pp-section pp-section-alt" id="experiences">
+    <div class="pp-container">
+      <h2 class="pp-center">Trusted travel partners</h2>
+      <p class="pp-center pp-subtitle">Imagine this section populated with the brands you collaborate with.</p>
+
+      <div class="pp-partner-grid">
+        <article class="pp-partner-card reveal">
+          <h4>Travel partners</h4>
+          <div class="pp-logo-row">
+            <span class="pp-logo-pill">Miles & More</span>
+            <span class="pp-logo-pill">SkyLuxe</span>
+            <span class="pp-logo-pill">Nomad Air</span>
+          </div>
+          <p class="pp-partner-desc">Airlines and rewards partners offering perks for members.</p>
+        </article>
+
+        <article class="pp-partner-card reveal">
+          <h4>Stay programmes</h4>
+          <div class="pp-logo-row">
+            <span class="pp-logo-pill">City Suites</span>
+            <span class="pp-logo-pill">Mountain Homes</span>
+            <span class="pp-logo-pill">Ocean Villas</span>
+          </div>
+          <p class="pp-partner-desc">Curated hotel and stay partners with member-only offers.</p>
+        </article>
+
+        <article class="pp-partner-card reveal">
+          <h4>Experience hosts</h4>
+          <div class="pp-logo-row">
+            <span class="pp-logo-pill">Fine Tables</span>
+            <span class="pp-logo-pill">Nightlife Co.</span>
+            <span class="pp-logo-pill">Culture Club</span>
+          </div>
+          <p class="pp-partner-desc">Local hosts and curated experiences available to our community.</p>
+        </article>
+      </div>
+      <p class="pp-center pp-partner-note">*Placeholder names – replace with your real partners when you have them.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pp-section pp-cta" id="events">
+    <div class="pp-container pp-cta-inner">
+      <div>
+        <h2>Be part of the very first PlanPeeps members.</h2>
+        <p>Join now to stay informed about new trips, events and membership perks.</p>
+      </div>
+      <div>
+        <button class="pp-primary-btn" id="ctaSignup">Join the community</button>
+        <button class="pp-outline-btn" id="ctaSignin">Log in</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="pp-footer">
+    <div class="pp-container pp-footer-grid">
+      <div>
+        <div class="pp-logo">Plan<span>Peeps</span></div>
+        <p>A curated travel community for people who want their trips to feel special.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#collection">Collection</a>
+        <a href="#stories">Editorials</a>
+        <a href="#membership">Membership</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#">Contact</a>
+        <a href="#">Careers</a>
+        <a href="#">Privacy & terms</a>
+      </div>
+    </div>
+    <div class="pp-container pp-footer-bottom">
+      <span>© <span id="year"></span> PlanPeeps. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- Signup Modal -->
+  <div class="pp-modal-overlay" id="signupModal">
+    <div class="pp-modal">
+      <button class="pp-modal-close" data-close="signupModal">×</button>
+      <h2>Join PlanPeeps</h2>
+      <p>Create a free profile to explore the community.</p>
+      <form class="pp-auth-form">
+        <input type="text" placeholder="Full name" />
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <button type="submit" class="pp-primary-btn full">Create account</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Signin Modal -->
+  <div class="pp-modal-overlay" id="signinModal">
+    <div class="pp-modal">
+      <button class="pp-modal-close" data-close="signinModal">×</button>
+      <h2>Log in</h2>
+      <form class="pp-auth-form">
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+        <button type="submit" class="pp-primary-btn full">Log in</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1218 @@
+/* Light sky-blue theme */
+:root {
+  --c1: #E6F7FF; /* very light sky */
+  --c2: #CFF3FF;
+  --c3: #7FD3FF;
+  --c4: #2EA6E6; /* accent */
+
+  --pp-bg: linear-gradient(180deg, var(--c1), #F8FEFF 60%);
+  --pp-bg-alt: #F8FEFF;
+  --pp-surface: #FFFFFF; /* white contrast surfaces */
+  --pp-text: #04293A; /* dark teal for readable text */
+  --pp-text-muted: #4b6b75;
+  --pp-primary: var(--c4);
+  --pp-primary-strong: var(--c3);
+  --pp-border: rgba(2, 48, 71, 0.08);
+  --pp-chip-bg: rgba(46,166,230,0.08);
+  /* Shadows & overlays (light theme) */
+  --pp-shadow-sm: 0 10px 30px rgba(2,48,71,0.04);
+  --pp-shadow-md: 0 12px 30px rgba(2,48,71,0.06);
+  --pp-shadow-lg: 0 18px 50px rgba(46,166,230,0.12);
+  --pp-shadow-xl: 0 22px 50px rgba(46,166,230,0.08);
+  --pp-shadow-hover: 0 18px 50px rgba(46,166,230,0.12);
+  --pp-dot-glow: 0 0 0 8px rgba(34,197,94,0.28);
+  --pp-overlay: rgba(2,48,71,0.06);
+  --pp-dashed: rgba(2,48,71,0.08);
+  --pp-ghost-bg: rgba(46,166,230,0.06);
+}
+
+body.light {
+  /* keep same variables for light mode */
+}
+
+/* Dark theme variables when `body` does NOT have the `light` class */
+body:not(.light) {
+  --c1: #EEF5FF;
+  --c2: #B4D4FF;
+  --c3: #86B6F6;
+  --c4: #176B87;
+
+  --pp-bg: radial-gradient(circle at top left, #0b1220 0, #020617 40%, #020617 100%);
+  --pp-bg-alt: #020617;
+  --pp-surface: rgba(15, 23, 42, 0.92);
+  --pp-text: #e5e7eb;
+  --pp-text-muted: #9ca3af;
+  --pp-primary: var(--c3);
+  --pp-primary-strong: var(--c4);
+  --pp-border: rgba(148, 163, 184, 0.5);
+  --pp-chip-bg: rgba(148, 163, 184, 0.18);
+  /* Shadows & overlays (dark theme) */
+  --pp-shadow-sm: 0 18px 40px rgba(15,23,42,0.7);
+  --pp-shadow-md: 0 20px 60px rgba(15,23,42,0.7);
+  --pp-shadow-lg: 0 26px 70px rgba(15,23,42,0.95);
+  --pp-shadow-xl: 0 26px 70px rgba(15,23,42,0.95);
+  --pp-shadow-hover: 0 26px 70px rgba(15,23,42,0.95);
+  --pp-dot-glow: 0 0 0 8px rgba(34,197,94,0.28);
+  --pp-overlay: rgba(15,23,42,0.75);
+  --pp-dashed: rgba(148,163,184,0.45);
+  --pp-ghost-bg: rgba(37,99,235,0.12);
+}
+
+/* Global reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--pp-bg);
+  color: var(--pp-text);
+  line-height: 1.5;
+}
+
+/* Layout helpers */
+.pp-container {
+  width: min(1120px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.pp-section {
+  padding: 4.5rem 0;
+}
+
+.pp-section-alt {
+  background: radial-gradient(circle at top right, rgba(134, 182, 246, 0.16), transparent 60%);
+}
+
+.pp-center {
+  text-align: center;
+}
+
+.pp-subtitle {
+  margin-top: 0.5rem;
+  color: var(--pp-text-muted);
+}
+
+/* Header */
+.pp-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(248,254,255,0.95));
+  border-bottom: 1px solid var(--pp-border);
+}
+
+.pp-header-glass {
+  background: linear-gradient(90deg, rgba(255,255,255,0.85), rgba(248,254,255,0.9));
+}
+
+.pp-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 0.7rem;
+}
+
+.pp-logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+}
+
+.pp-logo span {
+  color: var(--pp-primary);
+}
+
+.pp-nav-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.pp-nav-links a {
+  position: relative;
+  text-decoration: none;
+  color: var(--pp-text-muted);
+  padding-bottom: 2px;
+}
+
+.pp-nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--c3), var(--c4));
+  transition: width 0.25s ease;
+}
+
+.pp-nav-links a:hover {
+  color: var(--pp-text);
+}
+
+.pp-nav-links a:hover::after {
+  width: 100%;
+}
+
+.pp-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Buttons */
+.pp-primary-btn,
+.pp-outline-btn,
+.pp-ghost-btn {
+  border-radius: 999px;
+  padding: 0.5rem 1.3rem;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 500;
+  background: none;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, border-color 0.16s ease;
+}
+
+.pp-primary-btn {
+  background: linear-gradient(135deg, var(--c3), var(--c4));
+  color: #f9fafb;
+  box-shadow: var(--pp-shadow-lg);
+}
+
+.pp-primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--pp-shadow-hover);
+}
+
+.pp-outline-btn {
+  border-color: var(--pp-border);
+  color: var(--pp-text);
+  background: rgba(255,255,255,0.92);
+}
+
+.pp-outline-btn.small {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+}
+
+.pp-outline-btn.full,
+.pp-primary-btn.full {
+  width: 100%;
+}
+
+.pp-outline-btn:hover {
+  background: var(--pp-overlay);
+  transform: translateY(-1px);
+}
+
+.pp-ghost-btn {
+  color: var(--pp-primary);
+}
+
+.pp-ghost-btn:hover {
+  background: var(--pp-ghost-bg);
+}
+
+.pp-icon-btn {
+  border-radius: 999px;
+  border: 1px solid var(--pp-border);
+  background: rgba(255,255,255,0.9);
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+}
+
+/* Burger */
+.pp-burger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.pp-burger span {
+  width: 18px;
+  height: 2px;
+  background: var(--pp-text);
+}
+
+/* Hero */
+.pp-hero {
+  padding: 4.5rem 0 4.5rem;
+  background:
+    radial-gradient(circle at top left, rgba(126,211,255,0.18), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(46,166,230,0.12), transparent 60%);
+}
+
+.pp-hero-gradient {
+  /* subtle gradient overlay for hero */
+}
+
+.pp-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.pp-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.7rem;
+  color: var(--pp-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.pp-hero-text h1 {
+  font-size: clamp(2.1rem, 3vw, 2.8rem);
+  margin-bottom: 0.75rem;
+}
+
+.pp-hero-text p {
+  color: var(--pp-text-muted);
+  max-width: 35rem;
+}
+
+.pp-hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.3rem;
+}
+
+.pp-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+  font-size: 0.85rem;
+  color: var(--pp-text-muted);
+}
+
+.pp-hero-meta span {
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px dashed var(--pp-border);
+}
+
+/* Live card */
+.pp-hero-card {
+  background: var(--pp-surface);
+  border-radius: 1.3rem;
+  padding: 1.25rem 1.3rem;
+  border: 1px solid var(--pp-border);
+  box-shadow: var(--pp-shadow-md);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 360px; /* keeps the card a reasonable size on wide screens */
+  justify-self: center; /* center inside the grid column */
+}
+
+/* Targeted change: make the specific hero card square at a stable size */
+.pp-hero-card.float-card.reveal.visible {
+  width: 500px;
+  height: 500px;
+  max-width: none;
+  aspect-ratio: unset;
+  overflow: hidden;
+  /* expose scale var for inner proportional sizing; JS may set this */
+  --pp-hero-scale: 1;
+}
+
+/* Layout adjustments for inner content so it centers and scales inside the square */
+.pp-hero-card.float-card.reveal.visible {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: calc(12px * var(--pp-hero-scale)); /* scaled padding */
+  box-sizing: border-box;
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-hero-card-header {
+  padding: 0 0.4rem;
+  margin-bottom: 0.5rem;
+  flex: 0 0 auto;
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-hero-card-header h3 {
+  margin: 0;
+  font-size: calc(16px * var(--pp-hero-scale));
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-carousel {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0.2rem;
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-viewport {
+  flex: 1 1 auto;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-track {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-card {
+  width: calc(76% * var(--pp-hero-scale));
+  max-width: 420px;
+  flex: 0 0 auto;
+  border-radius: calc(10px * var(--pp-hero-scale));
+  overflow: hidden;
+}
+
+/* Make trip card fill available vertical space and keep image visible */
+.pp-hero-card.float-card.reveal.visible .pp-trip-track {
+  align-items: stretch; /* let children fill height */
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pp-hero-card.float-card.reveal.visible {
+  /* expose CSS vars that JS can override for fine tuning */
+  --pp-hero-scale: 1;
+  --pp-hero-image-percent: 55%; /* default image occupies 55% of card height */
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-image {
+  display: block;
+  width: 100%;
+  flex: 0 0 var(--pp-hero-image-percent);
+  height: auto;
+  object-fit: cover;
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-bio {
+  flex: 1 1 auto;
+  padding: 0.8rem;
+  overflow: auto;
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-image {
+  width: 100%;
+  height: auto;
+  max-height: 52%;
+  object-fit: cover;
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-bio {
+  padding: calc(10px * var(--pp-hero-scale));
+  font-size: calc(14px * var(--pp-hero-scale));
+}
+
+/* Keep nav buttons visible above the carousel */
+.pp-hero-card.float-card.reveal.visible .pp-trip-btn {
+  z-index: 40;
+}
+
+.float-card {
+  animation: floatCard 9s ease-in-out infinite alternate;
+}
+
+@keyframes floatCard {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-10px); }
+}
+
+.pp-hero-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.9rem;
+}
+
+.pp-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: var(--pp-dot-glow);
+}
+
+.pp-hero-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+
+.pp-stream-item {
+  display: flex;
+  gap: 0.7rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.9rem;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--pp-border);
+  backdrop-filter: blur(6px);
+}
+
+.pp-stream-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--c3), var(--c4));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0b1120;
+}
+
+.pp-stream-title {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.pp-stream-meta {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--pp-text-muted);
+}
+
+/* As seen in */
+.pp-seen-in {
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--pp-text-muted);
+}
+
+.pp-seen-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pp-logo-pill {
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(46,166,230,0.08);
+  border: 1px solid var(--pp-border);
+  font-size: 0.8rem;
+  color: var(--pp-primary-strong);
+}
+
+/* Pillars */
+.pp-pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.pp-pillar-card {
+  border-radius: 1.2rem;
+  padding: 1.5rem 1.3rem;
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-border);
+  box-shadow: var(--pp-shadow-sm);
+}
+
+.pp-pillar-card p {
+  color: var(--pp-text-muted);
+}
+
+/* Section head */
+.pp-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+/* Benefits */
+.pp-benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+.pp-benefit-card {
+  border-radius: 1.2rem;
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-border);
+  padding: 1.25rem 1.2rem;
+  box-shadow: 0 12px 30px rgba(2,48,71,0.04);
+}
+
+.pp-benefit-card p {
+  color: var(--pp-text-muted);
+}
+
+/* Blogs */
+.pp-blog-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+.pp-blog-card {
+  border-radius: 1.2rem;
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-border);
+  padding: 1.25rem 1.2rem;
+  box-shadow: 0 12px 30px rgba(2,48,71,0.04);
+}
+
+.pp-chip {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(134,182,246,0.18);
+  color: var(--pp-primary);
+  font-size: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.pp-blog-card p {
+  color: var(--pp-text-muted);
+  font-size: 0.9rem;
+}
+
+/* Partner cards */
+.pp-partner-card {
+  border-radius: 1.2rem;
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-border);
+  padding: 1.25rem 1.2rem;
+  box-shadow: 0 12px 30px rgba(2,48,71,0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.pp-partner-card h4 {
+  margin-bottom: 0.6rem;
+}
+.pp-partner-desc {
+  margin-top: 0.9rem;
+  color: var(--pp-text-muted);
+  font-size: 0.9rem;
+}
+.pp-partner-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--c3);
+  box-shadow: var(--pp-shadow-xl);
+}
+
+.pp-blog-card a {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--c2);
+  text-decoration: none;
+}
+
+/* Partners */
+.pp-partner-grid {
+  margin-top: 2.25rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 1.4rem;
+}
+
+.pp-partner-col h4 {
+  margin-bottom: 0.8rem;
+}
+
+.pp-logo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.pp-partner-note {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: var(--pp-text-muted);
+}
+
+/* Reviews / ratings */
+.pp-review-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+/* Carousel wrapper and track */
+.pp-review-carousel {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.pp-review-viewport {
+  overflow: hidden;
+}
+
+.pp-review-track {
+  display: flex;
+  gap: 1.4rem;
+  transition: transform 350ms cubic-bezier(.22,.9,.31,1);
+}
+
+.pp-review-track .pp-review-card {
+  flex: 0 0 calc((100% / 3) - (1.4rem * (2/3)));
+  max-width: calc((100% / 3) - (1.4rem * (2/3)));
+}
+
+.pp-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--pp-surface);
+  color: var(--pp-text);
+  border: 1px solid var(--pp-border);
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 30;
+}
+
+.pp-carousel-btn:hover { transform: translateY(-50%) scale(1.03); }
+
+.pp-carousel-btn.prev { left: -12px; }
+.pp-carousel-btn.next { right: -12px; }
+
+.pp-carousel-btn[disabled] {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.pp-review-card {
+  border-radius: 1.2rem;
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-border);
+  padding: 1.25rem 1.2rem;
+  box-shadow: 0 12px 30px rgba(2,48,71,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Review header helpers (replaces inline styles) */
+.pp-review-head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.pp-review-name {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.pp-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--c3), var(--c4));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #0b1120;
+}
+
+.pp-rating {
+  color: #fbbf24; /* gold stars */
+  font-size: 0.95rem;
+  margin-top: 0.15rem;
+}
+
+.pp-review-quote {
+  margin: 0.2rem 0 0;
+  color: var(--pp-text-muted);
+}
+
+.pp-review-meta {
+  font-size: 0.8rem;
+  color: var(--pp-text-muted);
+}
+
+.pp-review-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--c3);
+  box-shadow: var(--pp-shadow-lg);
+}
+
+/* CTA */
+.pp-cta {
+  background:
+    radial-gradient(circle at top left, rgba(126,211,255,0.12), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(46,166,230,0.06), transparent 60%);
+}
+
+.pp-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+/* Footer */
+.pp-footer {
+  border-top: 1px solid var(--pp-border);
+  padding: 2.5rem 0 1.5rem;
+  background: linear-gradient(180deg, rgba(230,249,255,0.6), rgba(248,254,255,1));
+}
+
+.pp-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1.8rem;
+  font-size: 0.9rem;
+}
+
+.pp-footer-grid h4 {
+  margin-bottom: 0.5rem;
+}
+
+.pp-footer-grid a {
+  display: block;
+  color: var(--pp-text-muted);
+  text-decoration: none;
+  margin-top: 0.25rem;
+}
+
+.pp-footer-grid a:hover {
+  color: var(--pp-text);
+}
+
+.pp-footer-bottom {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--pp-dashed);
+  font-size: 0.85rem;
+  color: var(--pp-text-muted);
+}
+
+/* Forms & modals */
+.pp-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 48, 71, 0.06);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 70;
+}
+
+.pp-modal {
+  width: min(420px, 100% - 3rem);
+  background: var(--pp-surface);
+  border-radius: 1.4rem;
+  padding: 1.5rem 1.3rem 1.4rem;
+  border: 1px solid var(--pp-border);
+  box-shadow: var(--pp-shadow-xl);
+  position: relative;
+}
+
+.pp-modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  border-radius: 999px;
+  border: none;
+  background: rgba(2,48,71,0.06);
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  color: var(--pp-text);
+}
+
+.pp-auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.pp-auth-form input {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.7rem;
+  border: 1px solid var(--pp-border);
+  background: #f7fbff;
+  color: var(--pp-text);
+  font: inherit;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover animations for cards */
+.pp-pillar-card,
+.pp-benefit-card,
+.pp-blog-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.pp-pillar-card:hover,
+.pp-benefit-card:hover,
+.pp-blog-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--c3);
+  box-shadow: var(--pp-shadow-xl);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .pp-hero-grid,
+  .pp-pillar-grid,
+  .pp-benefit-grid,
+  .pp-blog-grid,
+  .pp-partner-grid,
+  .pp-review-grid,
+  .pp-footer-grid,
+  .pp-cta-inner {
+    grid-template-columns: 1fr;
+  }
+
+  /* On medium screens show 2 cards in carousel */
+  .pp-review-track .pp-review-card {
+    flex: 0 0 calc((100% / 2) - (1.4rem * (1/2)));
+    max-width: calc((100% / 2) - (1.4rem * (1/2)));
+  }
+
+  .pp-benefit-grid,
+  .pp-blog-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+
+  .pp-pillar-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+
+  .pp-nav-links {
+    position: absolute;
+    top: 56px;
+    right: 0;
+    left: 0;
+    padding: 0.75rem 1.25rem 1rem;
+    background: var(--pp-surface);
+    flex-direction: column;
+    border-bottom: 1px solid var(--pp-border);
+    display: none;
+  }
+
+  .pp-nav-links.open {
+    display: flex;
+  }
+
+  .pp-burger {
+    display: flex;
+  }
+
+  .pp-seen-in {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .pp-benefit-grid,
+  .pp-blog-grid,
+  .pp-pillar-grid,
+  .pp-review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* On small screens show 1 card in carousel */
+  .pp-review-track .pp-review-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+
+  /* Trip carousel inside hero card */
+  .pp-trip-carousel {
+    position: relative;
+    margin-top: 0.6rem;
+  }
+
+  .pp-trip-viewport {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pp-trip-track {
+    display: flex;
+    gap: 1rem;
+    transition: transform 320ms cubic-bezier(.22,.9,.31,1);
+    align-items: center;
+  }
+
+  .pp-trip-card {
+    width: min(300px, 100%); /* smaller card but still responsive */
+    aspect-ratio: 300 / 340;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: var(--pp-surface);
+    border: 1px solid var(--pp-border);
+    box-shadow: var(--pp-shadow-sm);
+    flex: 0 0 auto;
+    transition: transform 240ms ease, box-shadow 240ms ease;
+  }
+
+  .pp-trip-card:hover {
+    transform: scale(1.10);
+    box-shadow: var(--pp-shadow-lg);
+  }
+
+  .pp-trip-image {
+    height: 50%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .pp-trip-bio {
+    height: 50%;
+    padding: 0.9rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--pp-text);
+  }
+
+  .pp-trip-bio h4 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .pp-trip-meta {
+    font-size: 0.85rem;
+    color: var(--pp-text-muted);
+  }
+
+  .pp-trip-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: var(--pp-surface);
+    border: 1px solid var(--pp-border);
+    color: var(--pp-text);
+    cursor: pointer;
+    transition: transform 160ms ease, width 160ms ease, height 160ms ease;
+    z-index: 40;
+  }
+
+  .pp-trip-btn.prev { left: 8px; }
+  .pp-trip-btn.next { right: 8px; }
+
+  /* enlarge arrow when hovering carousel */
+  .pp-trip-carousel:hover .pp-trip-btn {
+    transform: translateY(-50%) scale(1.25);
+    width: 44px;
+    height: 44px;
+  }
+  .pp-hero-grid {
+    gap: 2rem;
+  }
+
+  .pp-hero-meta {
+    flex-direction: column;
+  }
+}
+
+/* Trip carousel (desktop / accessibility polish) */
+.pp-trip-carousel {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.pp-trip-viewport {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pp-trip-track {
+  display: flex;
+  gap: 1rem;
+  transition: transform 320ms cubic-bezier(.22,.9,.31,1);
+  align-items: center;
+}
+
+.pp-trip-card {
+  width: min(420px, 100%); /* scale down on narrow containers */
+  aspect-ratio: 420 / 520; /* preserve approximate visual proportions */
+  border-radius: 1rem;
+  overflow: hidden;
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-border);
+  box-shadow: var(--pp-shadow-sm);
+  flex: 0 0 auto;
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+.pp-trip-card:hover,
+.pp-trip-card:focus-within {
+  transform: scale(1.10);
+  box-shadow: var(--pp-shadow-lg);
+}
+
+/* semantic image inside the card */
+.pp-trip-image {
+  display: block;
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.pp-trip-bio {
+  height: 50%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--pp-text);
+}
+
+.pp-trip-bio h4 { margin: 0; }
+.pp-trip-meta { color: var(--pp-text-muted); font-size: 0.92rem; }
+
+.pp-trip-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-border);
+  color: var(--pp-text);
+  cursor: pointer;
+  transition: transform 160ms ease, width 160ms ease, height 160ms ease;
+  z-index: 40;
+}
+
+.pp-trip-btn.prev { left: -28px; }
+.pp-trip-btn.next { right: -28px; }
+
+.pp-trip-carousel:hover .pp-trip-btn { transform: translateY(-50%) scale(1.12); }
+.pp-trip-btn:focus { box-shadow: var(--pp-dot-glow); outline: none; }
+
+.pp-trip-carousel:focus {
+  outline: 3px solid rgba(46,166,230,0.14);
+  outline-offset: 6px;
+}
+
+@media (max-width: 1120px) {
+  .pp-trip-card { width: 360px; height: 480px; }
+}
+
+@media (max-width: 780px) {
+  .pp-trip-card { width: 320px; height: 420px; }
+  .pp-trip-btn.prev { left: 8px; }
+  .pp-trip-btn.next { right: 8px; }
+}
+
+/* Ensure only one hosted trip is visible inside the hero card
+   - make each trip card occupy 100% of the hero viewport
+   - remove gap so next/prev do not peek
+   - use transform on the track (JS sets translateX) */
+.pp-hero-card.float-card.reveal.visible .pp-trip-viewport {
+  overflow: hidden;
+  width: 80%;
+  display: block;
+  margin-inline: auto;
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-track {
+  display: flex;
+  gap: 0; /* no peeking */
+  transition: transform 320ms cubic-bezier(.22,.9,.31,1);
+  width: 100%;
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-card {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border-radius: calc(10px * var(--pp-hero-scale));
+}
+
+/* Disable hover/scale for the hosted trip inside the hero card */
+.pp-hero-card.float-card.reveal.visible .pp-trip-card:hover,
+.pp-hero-card.float-card.reveal.visible .pp-trip-card:focus-within {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Ensure the image area is always visible even if the IMG fails to load
+   - give a neutral background + sensible min-height so the card keeps its visual section
+   - provide a larger min-height on hero cards so the image area is prominent on mobile */
+.pp-trip-card .pp-trip-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 140px; /* fallback height when image is not loaded */
+  background: linear-gradient(180deg, #fff, rgba(247,251,255,0.9));
+  object-fit: cover;
+  object-position: center;
+}
+
+.pp-hero-card.float-card.reveal.visible .pp-trip-card .pp-trip-image {
+  /* make the hero card image area larger so it's visible and balanced */
+  min-height: 160px;
+}
+
+@media (max-width: 640px) {
+  /* Center the Planned trips heading inside the hero card on mobile */
+  .pp-hero-card.float-card.reveal.visible .pp-hero-card-header {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+
