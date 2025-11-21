@@ -75,19 +75,42 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Scroll reveal
-const revealEls = document.querySelectorAll(".reveal");
-if (revealEls.length > 0 && "IntersectionObserver" in window) {
+// Enhanced scroll reveal with stagger support and slide modifiers
+const revealEls = document.querySelectorAll('.reveal');
+if (revealEls.length > 0 && 'IntersectionObserver' in window) {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+        const el = entry.target;
+        if (!entry.isIntersecting) return;
+
+        // If element is a stagger container, animate its children with delays
+        if (el.classList.contains('stagger')) {
+          const children = Array.from(el.children);
+          const gap = parseInt(el.dataset.staggerGap || '120', 10); // ms per item
+          children.forEach((child, i) => {
+            // apply per-child delay and then add visible class
+            child.style.transitionDelay = `${i * gap}ms`;
+            // ensure child has reveal-like base state (works with .stagger > *)
+            child.classList.add('reveal-child');
+            // small timeout to allow transitionDelay to register before toggling
+            setTimeout(() => child.classList.add('visible'), 20 + i * gap);
+          });
+          // mark the container as visible so CSS selectors like .stagger.visible > * can also apply
+          el.classList.add('visible');
+          observer.unobserve(el);
+          return;
         }
+
+        // For single elements, optionally honor a small per-element delay attribute
+        const delay = parseInt(el.dataset.revealDelay || '0', 10);
+        if (delay > 0) el.style.transitionDelay = `${delay}ms`;
+
+        el.classList.add('visible');
+        observer.unobserve(el);
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.15 }
   );
 
   revealEls.forEach((el) => observer.observe(el));
@@ -167,6 +190,104 @@ if (yearSpan) {
   updateButtons();
   // ensure starting position
   scrollToIndex(0);
+})();
+
+// Hosted trips carousel (4 visible cards on wide screens)
+(function setupHostedTripsCarousel(){
+  const carousel = document.querySelector('.hosted-trips-section .pp-trip-carousel.hosted-trips');
+  if (!carousel) return;
+
+  const viewport = carousel.querySelector('.pp-trip-viewport');
+  const track = carousel.querySelector('.pp-trip-track');
+  const cards = track ? Array.from(track.children) : [];
+  const prevBtn = carousel.querySelector('.pp-trip-btn.prev');
+  const nextBtn = carousel.querySelector('.pp-trip-btn.next');
+  if (!viewport || !track || cards.length === 0) return;
+
+  let index = 0;
+
+  function visibleCount(){
+    const vw = window.innerWidth;
+    if (vw <= 640) return 1;
+    if (vw <= 900) return 2;
+    return 4;
+  }
+
+  function updateButtons(){
+    const v = visibleCount();
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index >= Math.max(0, cards.length - v);
+  }
+
+  function scrollToIndex(i){
+    const v = visibleCount();
+    const cardWidth = cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || '0');
+    const offset = i * cardWidth;
+    track.style.transform = `translateX(-${offset}px)`;
+    index = i;
+    updateButtons();
+  }
+
+  prevBtn.addEventListener('click', ()=>{
+    const nextIndex = Math.max(0, index - 1);
+    scrollToIndex(nextIndex);
+  });
+
+  nextBtn.addEventListener('click', ()=>{
+    const v = visibleCount();
+    const maxIndex = Math.max(0, cards.length - v);
+    const nextIndex = Math.min(maxIndex, index + 1);
+    scrollToIndex(nextIndex);
+  });
+
+  // Recompute when resizing
+  let resizeTimer = null;
+  window.addEventListener('resize', ()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(()=>{
+      const v = visibleCount();
+      if (index > Math.max(0, cards.length - v)) index = Math.max(0, cards.length - v);
+      scrollToIndex(index);
+    }, 120);
+  });
+
+  // init
+  updateButtons();
+  // ensure starting position after layout
+  setTimeout(()=> scrollToIndex(0), 50);
+})();
+
+// Flip-card interactions: hover to flip on pointer devices, tap to toggle on touch devices
+(function setupFlipCards(){
+  const flips = document.querySelectorAll('.flip-card');
+  if (!flips || flips.length === 0) return;
+
+  flips.forEach((flip) => {
+    // On pointer devices, use pointerenter/leave to control flip so it feels snappy
+    flip.addEventListener('pointerenter', (e) => {
+      if (window.matchMedia('(hover: hover)').matches) flip.classList.add('is-flipped');
+    });
+    flip.addEventListener('pointerleave', (e) => {
+      if (window.matchMedia('(hover: hover)').matches) flip.classList.remove('is-flipped');
+    });
+
+    // On touch devices toggle flip on tap/click
+    flip.addEventListener('click', (e) => {
+      if (window.matchMedia('(hover: none)').matches) {
+        // don't interfere if user clicked the join button (allow its default behavior)
+        if (e.target.closest('.pp-join-btn')) return;
+        flip.classList.toggle('is-flipped');
+      }
+    });
+
+    // Keyboard support: Enter/Space toggles the flip
+    flip.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        flip.classList.toggle('is-flipped');
+      }
+    });
+  });
 })();
 
   // ---------- Hero card runtime sizer (make card square at 90% of column width) ----------
