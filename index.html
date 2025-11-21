@@ -32,7 +32,7 @@
   <!-- Hero -->
   <section class="pp-hero pp-hero-gradient" id="top">
     <div class="pp-container pp-hero-grid">
-      <div class="pp-hero-text reveal">
+      <div class="pp-hero-text reveal slide-left">
         <p class="pp-kicker">Travel · Discover · Belong</p>
         <h1>PlanPeeps : where Travel meets Trend</h1>
         <p>
@@ -51,53 +51,12 @@
         </div>
       </div>
 
-      <div class="pp-hero-card float-card reveal visible">
-        <div class="pp-hero-card-header">
-          <h3>Planned trips</h3>
-          <span class="pp-dot"></span>
-        </div>
-
-        <!-- Trip carousel: shows 1 card at a time inside the hero card -->
-        <div class="pp-trip-carousel" tabindex="0" role="region" aria-label="Planned trips carousel">
-          <button class="pp-trip-btn prev" aria-label="Previous trip">‹</button>
-          <div class="pp-trip-viewport">
-            <div class="pp-trip-track">
-              <article class="pp-trip-card" data-index="0">
-                <img class="pp-trip-image" src="https://via.placeholder.com/600x360?text=Goa+Weekend" alt="Goa Long Weekend" loading="lazy" />
-                <div class="pp-trip-bio">
-                  <h4>Goa Long Weekend</h4>
-                  <p>Beachside co-living with 18 people joining. 3 seats left — music, food and coastal trails.</p>
-                  <div class="pp-trip-meta">Hosted by Aisha · 4 days · ₹12,000</div>
-                </div>
-              </article>
-
-              <article class="pp-trip-card" data-index="1">
-                <img class="pp-trip-image" src="https://via.placeholder.com/600x360?text=Manali+Workation" alt="Manali Workation" loading="lazy" />
-                <div class="pp-trip-bio">
-                  <h4>Manali Workation</h4>
-                  <p>Remote-friendly stays in the valleys — coworking, hikes and community dinners.</p>
-                  <div class="pp-trip-meta">Hosted by Rohit · 2 weeks · ₹22,000</div>
-                </div>
-              </article>
-
-              <article class="pp-trip-card" data-index="2">
-                <img class="pp-trip-image" src="https://via.placeholder.com/600x360?text=Bali+Co-living" alt="Bali Co-living" loading="lazy" />
-                <div class="pp-trip-bio">
-                  <h4>Bali Co-living</h4>
-                  <p>Four-week co-living by the sea — yoga, surf lessons and local host-led experiences.</p>
-                  <div class="pp-trip-meta">Hosted by Maria · 4 weeks · ₹55,000</div>
-                </div>
-              </article>
-            </div>
-          </div>
-          <button class="pp-trip-btn next" aria-label="Next trip">›</button>
-        </div>
-      </div>
+      <!-- Hosted trips card was moved out of the hero into its own section -->
     </div>
 
     <div class="pp-container pp-seen-in reveal">
       <span class="pp-seen-label">Imagined as featured by</span>
-      <div class="pp-seen-logos">
+        <div class="pp-seen-logos reveal stagger" data-stagger-gap="100">
         <span class="pp-logo-pill">Travel Journal</span>
         <span class="pp-logo-pill">Globe & Co.</span>
         <span class="pp-logo-pill">Nomad Weekly</span>
@@ -105,10 +64,9 @@
       </div>
     </div>
   </section>
-
   <!-- Three pillars: Travel / Discover / Belong -->
   <section class="pp-section" id="collection">
-    <div class="pp-container pp-pillar-grid">
+    <div class="pp-container pp-pillar-grid reveal stagger" data-stagger-gap="120">
       <article class="pp-pillar-card reveal">
         <h2>Travel</h2>
         <p>Browse hand-picked trips and hotels designed for social, curious travelers.</p>
@@ -124,18 +82,119 @@
     </div>
   </section>
 
+  <!-- Hosted trips (new section placed above membership) -->
+  <section class="pp-section hosted-trips-section" id="hosted-trips">
+    <div class="pp-container">
+      <div class="pp-section-head" style="justify-content:center;">
+        <div>
+          <h2 class="pp-center">Hosted trips</h2>
+          <p class="pp-center pp-subtitle">Explore trips hosted by our community — flip a card to learn more.</p>
+        </div>
+      </div>
+
+      <div class="pp-trip-carousel hosted-trips" tabindex="0" role="region" aria-label="Hosted trips carousel">
+        <button class="pp-trip-btn prev" aria-label="Previous hosted trip">‹</button>
+        <div class="pp-trip-viewport">
+          <div class="pp-trip-track">
+            <!-- Four visible cards; reuse flip-card markup -->
+            <article class="pp-trip-card" data-index="0">
+              <div class="flip-card" tabindex="0">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front" data-title="Goa Long Weekend" data-meta="Hosted by Aisha · 4 days · ₹12,000">
+                    <img class="pp-trip-image" src="https://via.placeholder.com/800x560?text=Goa+Weekend" alt="Goa Long Weekend" loading="lazy" />
+                  </div>
+                  <div class="flip-card-back">
+                    <div class="pp-trip-bio">
+                      <h4>Goa Long Weekend</h4>
+                      <p>Beachside co-living with 18 people joining. 3 seats left — music, food and coastal trails.</p>
+                      <div class="pp-trip-meta">Hosted by Aisha · 4 days · ₹12,000</div>
+                      <div class="pp-join-wrap">
+                        <button class="pp-primary-btn pp-join-btn">Join the trip</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="pp-trip-card" data-index="1">
+              <div class="flip-card" tabindex="0">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front" data-title="Manali Workation" data-meta="Hosted by Rohit · 2 weeks · ₹22,000">
+                    <img class="pp-trip-image" src="https://via.placeholder.com/800x560?text=Manali+Workation" alt="Manali Workation" loading="lazy" />
+                  </div>
+                  <div class="flip-card-back">
+                    <div class="pp-trip-bio">
+                      <h4>Manali Workation</h4>
+                      <p>Remote-friendly stays in the valleys — coworking, hikes and community dinners.</p>
+                      <div class="pp-trip-meta">Hosted by Rohit · 2 weeks · ₹22,000</div>
+                      <div class="pp-join-wrap">
+                        <button class="pp-primary-btn pp-join-btn">Join the trip</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="pp-trip-card" data-index="2">
+              <div class="flip-card" tabindex="0">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front" data-title="Bali Co-living" data-meta="Hosted by Maria · 4 weeks · ₹55,000">
+                    <img class="pp-trip-image" src="https://via.placeholder.com/800x560?text=Bali+Co-living" alt="Bali Co-living" loading="lazy" />
+                  </div>
+                  <div class="flip-card-back">
+                    <div class="pp-trip-bio">
+                      <h4>Bali Co-living</h4>
+                      <p>Four-week co-living by the sea — yoga, surf lessons and local host-led experiences.</p>
+                      <div class="pp-trip-meta">Hosted by Maria · 4 weeks · ₹55,000</div>
+                      <div class="pp-join-wrap">
+                        <button class="pp-primary-btn pp-join-btn">Join the trip</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="pp-trip-card" data-index="3">
+              <div class="flip-card" tabindex="0">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front" data-title="Bengaluru Weekend" data-meta="Hosted by Sameer · 3 days · ₹6,500">
+                    <img class="pp-trip-image" src="https://via.placeholder.com/800x560?text=Bengaluru+Weekend" alt="Bengaluru Weekend" loading="lazy" />
+                  </div>
+                  <div class="flip-card-back">
+                    <div class="pp-trip-bio">
+                      <h4>Bengaluru Weekend</h4>
+                      <p>City escapes with curated food walks and a group rooftop stay.</p>
+                      <div class="pp-trip-meta">Hosted by Sameer · 3 days · ₹6,500</div>
+                      <div class="pp-join-wrap">
+                        <button class="pp-primary-btn pp-join-btn">Join the trip</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        <button class="pp-trip-btn next" aria-label="Next hosted trip">›</button>
+      </div>
+    </div>
+  </section>
+
   <!-- Member benefits -->
   <section class="pp-section pp-section-alt" id="membership">
     <div class="pp-container">
       <div class="pp-section-head">
-        <div>
+        <div class="reveal slide-left">
           <h2>Member benefits</h2>
           <p>Why frequent travelers feel at home on PlanPeeps.</p>
         </div>
-        <button class="pp-outline-btn small" id="membershipSignup">View membership options</button>
+        <button class="pp-outline-btn small reveal slide-right" id="membershipSignup">View membership options</button>
       </div>
 
-      <div class="pp-benefit-grid">
+      <div class="pp-benefit-grid reveal stagger" data-stagger-gap="110">
         <article class="pp-benefit-card reveal">
           <h3>VIP hotel treatment</h3>
           <p>Unlock upgrades, late check-outs and little extras at selected stays.</p>
@@ -272,11 +331,11 @@
   <!-- CTA -->
   <section class="pp-section pp-cta" id="events">
     <div class="pp-container pp-cta-inner">
-      <div>
+      <div class="reveal slide-left">
         <h2>Be part of the very first PlanPeeps members.</h2>
         <p>Join now to stay informed about new trips, events and membership perks.</p>
       </div>
-      <div>
+      <div class="reveal slide-right">
         <button class="pp-primary-btn" id="ctaSignup">Join the community</button>
         <button class="pp-outline-btn" id="ctaSignin">Log in</button>
       </div>
